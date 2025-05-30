@@ -57,9 +57,10 @@ body{
 }
 
 /* Cards */
-.card{
+.listing-card{
     border: none !important;
     margin-bottom: 2rem;
+    padding: 0;
 }
 
 .card-img-top{
@@ -91,7 +92,7 @@ body{
     background-color: white;
 }
 
-.btn{
+.submit-btn{
     background-color: #fe424d !important;
     border: none !important;
 }

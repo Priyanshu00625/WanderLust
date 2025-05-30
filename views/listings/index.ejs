@@ -1,33 +1,31 @@
 <% layout("/layouts/boilerplate") %>
+  <%= success %>
 
-<h3 class="mt-4 text-center">All Listings</h3>
+    <h3 class="mt-4 text-center">All Listings</h3>
 
-<!-- Optional: Uncomment this if you want a "Create New Listing" button -->
-<!--
+    <!-- Optional: Uncomment this if you want a "Create New Listing" button -->
+    <!--
 <div class="text-center mb-4">
   <a href="/listings/new" class="btn btn-dark">Create New Listing</a>
 </div>
 -->
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-  <% for (let listing of allListings) { %>
-    <div class="col">
-      <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
-        <div class="card h-100">
-          <img 
-            src="<%= listing.image.url %>" 
-            class="card-img-top" 
-            alt="Listing image" 
-            style="height: 20rem; object-fit: cover;"
-          />
-          <div class="card-body">
-            <p class="card-text">
-              <strong><%= listing.title %></strong><br>
-              ₹ <%= listing.price.toLocaleString("en-IN") %>
-            </p>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      <% for (let listing of allListings) { %>
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+          <div class="card col listing-card">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing image"
+              style="height: 20rem; object-fit: cover;" />
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+              <p class="card-text">
+                <strong>
+                  <%= listing.title %>
+                </strong><br>
+                ₹ <%= listing.price.toLocaleString("en-IN") %>
+              </p>
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+        <% } %>
     </div>
-  <% } %>
-</div>
