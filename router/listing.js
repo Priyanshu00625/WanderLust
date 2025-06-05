@@ -3,35 +3,36 @@ const router = express.Router();
 const Listing = require("../models/listing.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const { listingSchema } = require("../schema.js")
-const {isLoggedIn, isOwner , validateListing} = require("../middleware.js");
+const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 const listingController = require("../controllers/listings.js");
-const multer  = require('multer')
-const {storage} = require("../cloudConfig.js")
+const multer = require('multer')
+const { storage } = require("../cloudConfig.js")
 const upload = multer({ storage })
 
 
 router.route("/")
-.get( wrapAsync(listingController.index))
-.post(
-     validateListing,
-     upload.single("listing[image]") ,
-    isLoggedIn,
-    wrapAsync(listingController.createListings),
-);
+     .get(wrapAsync(listingController.index))
+     .post(
+          validateListing,
+          isLoggedIn,
+          upload.single("listing[image]"),
+          wrapAsync(listingController.createListings),
+     );
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
 
 router.route("/:id")
-.get(wrapAsync(listingController.showRoute))
-.put( 
-    validateListing,
-    isLoggedIn,
-    isOwner,
-    wrapAsync(listingController.update))
-.delete(
-     isLoggedIn,
-     isOwner,
-     wrapAsync(listingController.delete))
+     .get(wrapAsync(listingController.showRoute))
+     .put(
+          isLoggedIn,
+          isOwner,
+          upload.single("listing[image]"),
+          validateListing,
+          wrapAsync(listingController.update))
+     .delete(
+          isLoggedIn,
+          isOwner,
+          wrapAsync(listingController.delete))
 
 //New Route
 
@@ -41,7 +42,7 @@ router.route("/:id")
 router.get("/:id/edit",
      isLoggedIn,
      isOwner,
-      wrapAsync(listingController.Editlisting));
+     wrapAsync(listingController.Editlisting));
 
 
 
