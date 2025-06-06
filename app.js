@@ -99,7 +99,9 @@ app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong" } = err;
   res.render("error.ejs", { message });
 });
-
+app.get("/" , (req , res)=>{
+  res.redirect("/listings")
+});
 app.listen(port, () => {
   console.log("server is listening to port 8080");
 }); 
