@@ -10,7 +10,11 @@
       <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image" />
       <div class="card-body">
         <p class="card-text">Owend by<i>
+           <% if (listing.owner) { %>
             <%= listing.owner.username %>
+               <% } else { %>
+                   Unknown
+    <% } %>
           </i></p>
         <p class="card-text">
           <%= listing.description %>

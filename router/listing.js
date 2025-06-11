@@ -34,10 +34,6 @@ router.route("/:id")
           isOwner,
           wrapAsync(listingController.delete))
 
-//New Route
-
-
-
 //Edit Route
 router.get("/:id/edit",
      isLoggedIn,
