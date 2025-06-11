@@ -100,10 +100,10 @@ app.use((err, req, res, next) => {
   res.render("error.ejs", { message });
 });
 
+
 app.get("/" , (req ,res)=>{
   res.redirect("/listings")
 });
-
 app.listen(port, () => {
   console.log("server is listening to port 8080");
 }); 
